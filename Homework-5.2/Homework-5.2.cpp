@@ -7,14 +7,14 @@
 
 using namespace std;
 
-class figure {
+class Figure {
 protected:
 
     int numSides;
 
 public:
 
-    figure() {
+    Figure() {
         this->numSides = 0;
     };
 
@@ -26,13 +26,13 @@ public:
         this->numSides = num;
     };
 
-    void getSidesCount() {
+    virtual void getSidesCount() {
         cout << "Фигура: " << getSides() << endl;
     };
 
 };
 
-class Triangle : public figure {
+class Triangle : public Figure {
 
 protected:
     int a, b, c;
@@ -40,7 +40,7 @@ protected:
 
 public:
 
-    Triangle(int a, int b, int c, int A, int B, int C) : figure() {
+    Triangle(int a, int b, int c, int A, int B, int C) : Figure() {
         numSides = 3;
         if (a == 0 || b == 0 || c == 0) {
             cout << "Ошибка, стороны треугольника не могут быть равны нулю." << endl;
@@ -71,7 +71,7 @@ public:
         return text;
     };
 
-    void getSidesCount() {
+    void getSidesCount() override {
         string triangleType[] = { "Прямоугольный треугольник: ", "Равнобедренный треугольник: ", "Равносторонний треугольник: ", "Треугольник: " };
         if (C == 90) {
             cout << triangleType[0] << endl << getSides() << endl;
@@ -89,14 +89,14 @@ public:
 
 };
 
-class Fourangle : public figure {
+class Fourangle : public Figure {
 protected:
     int a, b, c, d;
     int A, B, C, D;
 
 public:
 
-    Fourangle(int a, int b, int c, int d, int A, int B, int C, int D) : figure() {
+    Fourangle(int a, int b, int c, int d, int A, int B, int C, int D) : Figure() {
         numSides = 4;
         if ( a == 0 || b == 0 || c == 0 || d == 0) {
             cout << "Ошибка, стороны четырехугольника не могут быть равны нулю." << endl;
@@ -125,7 +125,7 @@ public:
         return text;
     };
 
-    void getSidesCount() {
+    void getSidesCount() override {
         string fourangleType[] = { "Прямоугольник : ", "Квадрат: ", "Параллелограмм: ", "Ромб: ", "Четырехугольник"};
         if (a == b && b == c && c == d && d == a && A == 90 && B == 90 && C == 90 && D == 90) {
             cout << fourangleType[1] << endl << getSides() << endl;
@@ -152,7 +152,7 @@ int main(int argc, char** argv)
 {
     setlocale(LC_ALL, "Russian");
     cout << "Количество сторон: " << endl;
-    figure figure;
+    Figure figure;
     figure.getSidesCount();
     
     Triangle triangle(10,10,10,60,60,60);
