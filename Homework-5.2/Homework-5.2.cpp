@@ -1,6 +1,5 @@
 ﻿// Homework-5.2.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -67,24 +66,12 @@ public:
 
     string getSides() {
         string text = "Стороны: a = " + to_string(a) + " b = " + to_string(b) + " c = " + to_string(c) + "\n" +
-        "Углы : A = " + to_string(A) + " B = " + to_string(B) + " C = " + to_string(C) + "\n";
+            "Углы : A = " + to_string(A) + " B = " + to_string(B) + " C = " + to_string(C) + "\n";
         return text;
     };
 
     void getSidesCount() override {
-        string triangleType[] = { "Прямоугольный треугольник: ", "Равнобедренный треугольник: ", "Равносторонний треугольник: ", "Треугольник: " };
-        if (C == 90) {
-            cout << triangleType[0] << endl << getSides() << endl;
-        }
-        else if (a == b && b == c && A == 60 && B == 60 && C == 60) {
-            cout << triangleType[2] << endl << getSides() << endl;
-        }
-        else if (a == c && A == C) {
-            cout << triangleType[1] << endl << getSides() << endl;
-        }
-        else {
-            cout << triangleType[3] << endl << getSides() << endl;
-        };
+            cout << "Треугольник: " << endl << getSides() << endl;
     };
 
 };
@@ -98,12 +85,17 @@ public:
 
     Fourangle(int a, int b, int c, int d, int A, int B, int C, int D) : Figure() {
         numSides = 4;
-        if ( a == 0 || b == 0 || c == 0 || d == 0) {
+        if (a == 0 || b == 0 || c == 0 || d == 0) {
             cout << "Ошибка, стороны четырехугольника не могут быть равны нулю." << endl;
-        }else if (A == 0 || B == 0 || C == 0 || D == 0) {
+            return;
+        }
+        else if (A == 0 || B == 0 || C == 0 || D == 0) {
             cout << "Ошибка, углы четырехугольника не могут быть равны нулю." << endl;
-        } else if ((A + B + C + D) > 360) {
+            return;
+        }
+        else if ((A + B + C + D) > 360) {
             cout << "Ошибка, сумма значений углов не могут быть больше 360." << endl;
+            return;
         }
         else {
             this->a = a;
@@ -115,33 +107,18 @@ public:
             this->C = C;
             this->D = D;
         };
-        
-        
+
+
     };
 
     string getSides() {
         string text = "Стороны: a = " + to_string(a) + " b = " + to_string(b) + " c = " + to_string(c) + " d = " + to_string(d) + "\n" +
-        "Углы : A = " + to_string(A) + " B = " + to_string(B) + " C = " + to_string(C) + " D = " + to_string(D) + "\n";
+            "Углы : A = " + to_string(A) + " B = " + to_string(B) + " C = " + to_string(C) + " D = " + to_string(D) + "\n";
         return text;
     };
 
     void getSidesCount() override {
-        string fourangleType[] = { "Прямоугольник : ", "Квадрат: ", "Параллелограмм: ", "Ромб: ", "Четырехугольник"};
-        if (a == b && b == c && c == d && d == a && A == 90 && B == 90 && C == 90 && D == 90) {
-            cout << fourangleType[1] << endl << getSides() << endl;
-        } 
-        else if (a == c && b == d && A == 90 && B == 90 && C == 90 && D == 90) {
-            cout << fourangleType[0] << endl << getSides() << endl;
-        }
-        else if (a == b && b == c && c == d && d == a && A == C && B == D) {
-            cout << fourangleType[3] << endl << getSides() << endl;
-        }
-        else if (a == c && b == d && A == C && B == D) {
-            cout << fourangleType[2] << endl << getSides() << endl;
-        }
-        else {
-            cout << fourangleType[4] << endl << getSides() << endl;
-        }
+            cout << "Квадрат: " << endl << getSides() << endl;
     };
 
 
@@ -154,8 +131,8 @@ int main(int argc, char** argv)
     cout << "Количество сторон: " << endl;
     Figure figure;
     figure.getSidesCount();
-    
-    Triangle triangle(10,10,10,60,60,60);
+
+    Triangle triangle(10, 10, 10, 60, 60, 60);
     triangle.getSidesCount();
 
 
@@ -165,10 +142,10 @@ int main(int argc, char** argv)
     Triangle triangleThree(10, 25, 15, 25, 65, 90);
     triangleThree.getSidesCount();
 
-    Triangle triangleFour (10, 25, 15, 35, 65, 80);
+    Triangle triangleFour(10, 25, 15, 35, 65, 80);
     triangleFour.getSidesCount();
 
-    Fourangle fourangle(10,20,30,40,50,60,70,80);
+    Fourangle fourangle(10, 20, 30, 40, 50, 60, 70, 80);
     fourangle.getSidesCount();
 
     Fourangle fourangleTwo(10, 20, 10, 20, 90, 90, 90, 90);
